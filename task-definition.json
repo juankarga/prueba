@@ -46,7 +46,15 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "prueba"
+      "name": "prueba",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-region": "us-east-1",
+            "awslogs-group": "/aws/ecs/prueba",
+            "awslogs-stream-prefix": "ecs"
+        }
+    }
     }
   ],
   "placementConstraints": [],
