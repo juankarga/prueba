@@ -74,6 +74,7 @@ jobs:
         run: |
           mvn clean install -s settings.xml -Dmaven.test.skip=false
   deploy:
+    needs: build
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
