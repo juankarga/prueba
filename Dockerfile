@@ -15,6 +15,6 @@ RUN mkdir -p /aws; \
     && pip install awscli \
     && yum clean all
 RUN bash -c 'touch /app.jar'
-COPY docker/entrypoint.sh /entrypoint.sh
+COPY /entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
