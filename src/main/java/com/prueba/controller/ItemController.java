@@ -11,14 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.prueba.model.Item;
 import com.prueba.repository.ItemRepository;
+import com.prueba.service.IItemService;
 
 @RestController
 public class ItemController {
 
 	private ItemRepository itemRepository;
 
-	public ItemController(ItemRepository itemRepository) {
+	private IItemService itemServiceImpl;
+
+	public ItemController(ItemRepository itemRepository, IItemService itemServiceImpl) {
 		this.itemRepository = itemRepository;
+		this.itemServiceImpl = itemServiceImpl;
 	}
 
 	@GetMapping("/items")
@@ -29,6 +33,11 @@ public class ItemController {
 	@GetMapping("/items/{id}")
 	public Item findById(@PathVariable String id) {
 		return itemRepository.findById(id);
+	}
+
+	@GetMapping("/items/ml/{id}")
+	public Item findByIdMl(@PathVariable String id) {
+		return itemServiceImpl.findItemMl(id);
 	}
 
 	@PostMapping("/items")
