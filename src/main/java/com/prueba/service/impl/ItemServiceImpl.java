@@ -34,7 +34,7 @@ public class ItemServiceImpl implements IItemService {
 
 		log.info("Iniciando consulta del item {}", itemId);
 		UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString("https://api.mercadolibre.com/items")
-				.path(itemId);
+				.pathSegment(itemId);
 
 		URI uri = urlBuilder.build().encode().toUri();
 		log.info("URL {}", uri.toString());
