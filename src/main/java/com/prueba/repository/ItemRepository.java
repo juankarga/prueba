@@ -1,7 +1,6 @@
 package com.prueba.repository;
 
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
@@ -40,7 +39,7 @@ public class ItemRepository implements RedisRepository {
 
 	@Override
 	public void save(Item item) {
-		hashOperations.put(KEY, UUID.randomUUID().toString(), item);
+		hashOperations.put(KEY, item.getId(), item);
 
 	}
 

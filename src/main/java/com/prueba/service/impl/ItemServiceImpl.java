@@ -82,10 +82,15 @@ public class ItemServiceImpl implements IItemService {
 		try {
 			log.info("Iniciando consulta del item en cache {}", itemId);
 			Item itemCache = itemRepository.findById(itemId);
-			log.info("Se encontro item en cache {}", itemCache);
-			return Optional.of(itemCache);
+			if (itemCache != null) {
+				log.info("Se encontro item en cache {}", itemCache);
+				return Optional.of(itemCache);
+			} else {
+				log.info("No se encontro item en cache {}", itemId);
+				return Optional.empty();
+			}
 		} catch (Exception e) {
-			log.info("No se encontro item en cache {}", itemId);
+			log.info("No se encontro item en cache {} exception {}", itemId, e);
 			return Optional.empty();
 		}
 
