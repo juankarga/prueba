@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.prueba.exception.NotFoundException;
 import com.prueba.model.Item;
 import com.prueba.service.IItemService;
 
@@ -30,23 +31,27 @@ public class ItemServiceImpl implements IItemService {
 	}
 
 	@Override
-	public Item findItemMl(String itemId) {
+	public Item findItemMl(String itemId) throws NotFoundException {
 
-		log.info("Iniciando consulta del item {}", itemId);
-		UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString("https://api.mercadolibre.com/items")
-				.pathSegment(itemId);
+		try {
+			log.info("Iniciando consulta del item {}", itemId);
+			UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString("https://api.mercadolibre.com/items")
+					.pathSegment(itemId);
 
-		URI uri = urlBuilder.build().encode().toUri();
-		log.info("URL {}", uri.toString());
-		JsonNode result = restTemplate.getForObject(uri, JsonNode.class);
-		log.info("Finalizando consulta del item {} resultado {}", itemId, result);
-		Item itemResult = new Item();
-		// id
-		itemResult.setId(result.get("id").asText());
-		// price
-		itemResult.setAmount(result.get("price").asDouble());
-		log.info("Resultado info del item {} resultado {}", itemId, itemResult);
-		return itemResult;
+			URI uri = urlBuilder.build().encode().toUri();
+			log.info("URL {}", uri.toString());
+			JsonNode result = restTemplate.getForObject(uri, JsonNode.class);
+			log.info("Finalizando consulta del item {} resultado {}", itemId, result);
+			Item itemResult = new Item();
+			// id
+			itemResult.setId(result.get("id").asText());
+			// price
+			itemResult.setAmount(result.get("price").asDouble());
+			log.info("Resultado info del item {} resultado {}", itemId, itemResult);
+			return itemResult;
+		} catch (Exception e) {
+			throw new NotFoundException("No se encontro el item indicado", e);
+		}
 	}
 
 }
