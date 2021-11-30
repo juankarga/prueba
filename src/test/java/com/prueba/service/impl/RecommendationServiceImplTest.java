@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ public class RecommendationServiceImplTest {
 	@InjectMocks
 	private RecommendationServiceImpl recommendationServiceImpl;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
 		ReflectionTestUtils.setField(recommendationServiceImpl, "trm", 4000f);

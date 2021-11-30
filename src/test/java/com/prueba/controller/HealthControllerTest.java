@@ -1,8 +1,8 @@
 package com.prueba.controller;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ public class HealthControllerTest {
 	@InjectMocks
 	private HealthController healthController;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
 	}

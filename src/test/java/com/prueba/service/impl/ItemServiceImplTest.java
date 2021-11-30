@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -39,7 +39,7 @@ public class ItemServiceImplTest {
 	@InjectMocks
 	private ItemServiceImpl itemServiceImpl;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws JsonMappingException, JsonProcessingException {
 		MockitoAnnotations.openMocks(this);
 
