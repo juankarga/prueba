@@ -12,12 +12,13 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import com.prueba.dto.CouponRequestDto;
 import com.prueba.dto.CouponResponseDto;
 import com.prueba.service.ICouponService;
-
+@SpringBootTest
 public class CouponControllerTest {
 
 	@Mock
