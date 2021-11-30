@@ -19,9 +19,9 @@
 			"cpu": 0,
 			"environment": [
 				{
-					"name": "SPRING_PROFILES_ACTIVE",
-					"value": "prod"
-				},
+                    "name": "SPRING_PROFILES_ACTIVE",
+                    "value": "prod"
+                },
 				{
 					"name": "REDIS_HOST",
 					"value": "redis-prueba.dyylbn.0001.use1.cache.amazonaws.com"
