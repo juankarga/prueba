@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
 	private String id;
-	private Double amount;
+	private Float price;
 
 	public String getId() {
 		return id;
@@ -15,12 +15,12 @@ public class Item implements Serializable {
 		this.id = id;
 	}
 
-	public Double getAmount() {
-		return amount;
+	public Float getPrice() {
+		return price;
 	}
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 
 }

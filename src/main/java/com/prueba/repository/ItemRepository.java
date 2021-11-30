@@ -1,11 +1,14 @@
 package com.prueba.repository;
 
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.data.redis.core.HashOperations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
 import com.prueba.model.Item;
@@ -15,8 +18,14 @@ public class ItemRepository implements RedisRepository {
 
 	private static final String KEY = "Item";
 
+	private Logger log = LoggerFactory.getLogger(ItemRepository.class);
+
+	@Value("${redis.ttl}")
+	private int redisTtl;
+
 	private RedisTemplate<String, Item> redisTemplate;
-	private HashOperations hashOperations;
+
+	private ValueOperations valueOperations;
 
 	public ItemRepository(RedisTemplate<String, Item> redisTemplate) {
 		this.redisTemplate = redisTemplate;
@@ -24,29 +33,21 @@ public class ItemRepository implements RedisRepository {
 
 	@PostConstruct
 	private void init() {
-		hashOperations = redisTemplate.opsForHash();
-	}
-
-	@Override
-	public Map<String, Item> findAll() {
-		return hashOperations.entries(KEY);
+		valueOperations = redisTemplate.opsForValue();
 	}
 
 	@Override
 	public Item findById(String id) {
-		return (Item) hashOperations.get(KEY, id);
+		return (Item) valueOperations.get(buildKey(id));
 	}
 
 	@Override
 	public void save(Item item) {
-		hashOperations.put(KEY, item.getId(), item);
-
+		valueOperations.set(buildKey(item.getId()), item, redisTtl, TimeUnit.SECONDS);
 	}
 
-	@Override
-	public void delete(String id) {
-		hashOperations.delete(KEY, id);
-
+	private String buildKey(String itemId) {
+		return KEY.concat(":").concat(itemId);
 	}
 
 }
