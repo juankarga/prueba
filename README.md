@@ -1,4 +1,4 @@
-#EJERCICIO COUPON
+# EJERCICIO COUPON
 
 El ejercicio consiste en exponer un API que dado una lista de item_id y el monto total del cupon pueda darle la lista de items que maximice el total gastado sin excederlo. 
 
