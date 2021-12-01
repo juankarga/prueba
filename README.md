@@ -16,7 +16,7 @@ Para implementar este ejercicio se usaron las siguientes herramientas o framewor
 
 **CI/CD:** implementado en git actions.
 
-**Metricas de calidad:** SonarCLoud.
+**Metricas de calidad:** SonarCLoud (https://sonarcloud.io/summary/overall?id=juankarga_prueba).
 
 **Contenedor:** Docker.
 
