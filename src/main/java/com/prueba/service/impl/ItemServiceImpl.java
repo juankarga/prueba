@@ -93,7 +93,8 @@ public class ItemServiceImpl implements IItemService {
 		UriComponentsBuilder urlBuilder = UriComponentsBuilder.fromUriString(urlMl).pathSegment(itemId);
 		URI uri = urlBuilder.build().encode().toUri();
 		log.info("URL {}", uri);
-		JsonNode result = restTemplate.getForObject(uri, JsonNode.class);
+		JsonNode result = restTemplate.getForObject(uri.toString(), JsonNode.class);
+
 		log.info("Finalizando consulta del item {} resultado {}", itemId, result);
 		return result;
 	}

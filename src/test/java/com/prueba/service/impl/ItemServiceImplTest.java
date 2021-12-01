@@ -1,11 +1,11 @@
 package com.prueba.service.impl;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +32,6 @@ public class ItemServiceImplTest {
 	private RestTemplate restTemplate;
 	@Mock
 	private ItemRepository itemRepository;
-	@Mock
-	private ObjectMapper objectMapper;
 
 	@InjectMocks
 	private ItemServiceImpl itemServiceImpl;
@@ -44,20 +42,36 @@ public class ItemServiceImplTest {
 
 		ReflectionTestUtils.setField(itemServiceImpl, "urlMl", "localhost");
 
+		doNothing().when(itemRepository).save(any());
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode result = objectMapper.readTree("{\"id\":\"MCO610559808\",\"price\":89950.0}");
+		when(restTemplate.getForObject(anyString(), eq(JsonNode.class))).thenReturn(result);
+	}
+
+	@Test
+	public void mapItemsWithCache() {
+
 		Item item = new Item();
 		item.setId("MLCO1");
 		item.setPrice(8500f);
 		when(itemRepository.findById(any())).thenReturn(item);
 
-		doNothing().when(itemRepository).save(any());
-
-		JsonNode result = objectMapper.readTree("{\"id\":MCO610559808,\"price\":89950.0}");
-		when(restTemplate.getForObject(any(URI.class), eq(JsonNode.class))).thenReturn(result);
+		Float couponAmount = 10000f;
+		List<String> listRequest = new ArrayList();
+		listRequest.add("MLCO1");
+		listRequest.add("MLCO2");
+		listRequest.add("MLCO4");
+		Map<String, Float> itemMap = itemServiceImpl.mapItems(listRequest, couponAmount);
+		Assert.assertNotNull(itemMap);
 	}
 
 	@Test
-	public void mapItems() {
-		Float couponAmount = 7000f;
+	public void mapItemsWithOutCache() {
+
+		when(itemRepository.findById(any())).thenReturn(null);
+
+		Float couponAmount = 10000f;
 		List<String> listRequest = new ArrayList();
 		listRequest.add("MLCO1");
 		listRequest.add("MLCO2");

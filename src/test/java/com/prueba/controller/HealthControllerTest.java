@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 public class HealthControllerTest {
 
@@ -18,8 +19,8 @@ public class HealthControllerTest {
 
 	@Test
 	public void healthTest() throws Exception {
-		String health = healthController.health();
-		Assert.assertEquals("OK", health);
+		ResponseEntity<String> response = healthController.health();
+		Assert.assertEquals("OK", response.getBody());
 	}
 
 }
