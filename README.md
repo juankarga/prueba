@@ -6,6 +6,8 @@ Para implementar este ejercicio se usaron las siguientes herramientas o framewor
 
 **Codigo fuente:** Java usando el framework spring (spring boot, Spring data redis).
 
+**Pruebas unitarias:** JUnit 5.
+
 **Administrador de dependencias:** Maven.
 
 **Nube:** AWS donde se hace uno de los servicios, EC2, ECR, ECS, API gateway, ElasticCache.
