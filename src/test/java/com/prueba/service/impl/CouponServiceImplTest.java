@@ -65,7 +65,7 @@ class CouponServiceImplTest {
 		CouponResponseDto couponResponseDto = couponServiceImpl.evaluateCoupon(couponRequestDto);
 		Assert.assertNotNull(couponResponseDto);
 		Assert.assertEquals(Float.valueOf(7000f), couponResponseDto.getTotal());
-		Assert.assertEquals(couponResponseDto.getItemIds().size(), 3);
+		Assert.assertEquals(3, couponResponseDto.getItemIds().size());
 
 	}
 

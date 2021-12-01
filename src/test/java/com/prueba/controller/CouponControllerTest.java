@@ -55,7 +55,7 @@ class CouponControllerTest {
 		Assert.assertNotNull(response);
 		CouponResponseDto couponResponseDto = response.getBody();
 		Assert.assertEquals(Float.valueOf(19800f), couponResponseDto.getTotal());
-		Assert.assertEquals(couponResponseDto.getItemIds().size(), 2);
+		Assert.assertEquals(2, couponResponseDto.getItemIds().size());
 	}
 
 }

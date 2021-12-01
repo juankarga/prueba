@@ -35,7 +35,7 @@ class RecommendationServiceImplTest {
 
 		List<String> resultList = recommendationServiceImpl.calculate(items, amountIn);
 		Assert.assertNotNull(resultList);
-		Assert.assertEquals(resultList.size(), 3);
+		Assert.assertEquals(3, resultList.size());
 	}
 
 }

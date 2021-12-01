@@ -69,7 +69,7 @@ class ItemServiceImplTest {
 	}
 
 	@Test
-	public void mapItemsWithOutCache() {
+	void mapItemsWithOutCache() {
 
 		when(itemRepository.findById(any())).thenReturn(null);
 
