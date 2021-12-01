@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-public class HealthControllerTest {
+class HealthControllerTest {
 
 	@InjectMocks
 	private HealthController healthController;
@@ -18,7 +18,7 @@ public class HealthControllerTest {
 	}
 
 	@Test
-	public void healthTest() throws Exception {
+	void healthTest() throws Exception {
 		ResponseEntity<String> response = healthController.health();
 		Assert.assertEquals("OK", response.getBody());
 	}

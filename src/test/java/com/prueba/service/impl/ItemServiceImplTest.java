@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prueba.model.Item;
 import com.prueba.repository.ItemRepository;
 
-public class ItemServiceImplTest {
+class ItemServiceImplTest {
 
 	@Mock
 	private RestTemplate restTemplate;
@@ -45,12 +45,12 @@ public class ItemServiceImplTest {
 		doNothing().when(itemRepository).save(any());
 
 		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode result = objectMapper.readTree("{\"id\":\"MCO610559808\",\"price\":89950.0}");
+		JsonNode result = objectMapper.readTree("{\"id\":\"MLCO2\",\"price\":8950.0}");
 		when(restTemplate.getForObject(anyString(), eq(JsonNode.class))).thenReturn(result);
 	}
 
 	@Test
-	public void mapItemsWithCache() {
+	void mapItemsWithCache() {
 
 		Item item = new Item();
 		item.setId("MLCO1");
@@ -64,6 +64,8 @@ public class ItemServiceImplTest {
 		listRequest.add("MLCO4");
 		Map<String, Float> itemMap = itemServiceImpl.mapItems(listRequest, couponAmount);
 		Assert.assertNotNull(itemMap);
+		Assert.assertEquals(1, itemMap.size());
+		Assert.assertEquals(Float.valueOf(8500f), itemMap.get("MLCO1"));
 	}
 
 	@Test
@@ -78,6 +80,8 @@ public class ItemServiceImplTest {
 		listRequest.add("MLCO4");
 		Map<String, Float> itemMap = itemServiceImpl.mapItems(listRequest, couponAmount);
 		Assert.assertNotNull(itemMap);
+		Assert.assertEquals(1, itemMap.size());
+		Assert.assertEquals(Float.valueOf(8950f), itemMap.get("MLCO2"));
 	}
 
 }

@@ -4,8 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -18,14 +16,12 @@ public class ItemRepository implements RedisRepository {
 
 	private static final String KEY = "Item";
 
-	private Logger log = LoggerFactory.getLogger(ItemRepository.class);
-
 	@Value("${redis.ttl}")
 	private int redisTtl;
 
 	private RedisTemplate<String, Item> redisTemplate;
 
-	private ValueOperations valueOperations;
+	private ValueOperations<String, Item> valueOperations;
 
 	public ItemRepository(RedisTemplate<String, Item> redisTemplate) {
 		this.redisTemplate = redisTemplate;

@@ -20,7 +20,7 @@ import com.prueba.dto.CouponResponseDto;
 import com.prueba.service.IItemService;
 import com.prueba.service.IRecommendationService;
 
-public class CouponServiceImplTest {
+class CouponServiceImplTest {
 
 	@Mock
 	private IItemService itemServiceImpl;
@@ -51,7 +51,7 @@ public class CouponServiceImplTest {
 	}
 
 	@Test
-	public void evaluateCouponTest() {
+	void evaluateCouponTest() {
 
 		CouponRequestDto couponRequestDto = new CouponRequestDto();
 		couponRequestDto.setAmount(20000f);
@@ -65,7 +65,7 @@ public class CouponServiceImplTest {
 		CouponResponseDto couponResponseDto = couponServiceImpl.evaluateCoupon(couponRequestDto);
 		Assert.assertNotNull(couponResponseDto);
 		Assert.assertEquals(Float.valueOf(7000f), couponResponseDto.getTotal());
-		Assert.assertTrue(couponResponseDto.getItemIds().size() == 3);
+		Assert.assertEquals(couponResponseDto.getItemIds().size(), 3);
 
 	}
 

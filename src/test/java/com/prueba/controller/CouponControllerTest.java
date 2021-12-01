@@ -18,7 +18,7 @@ import com.prueba.dto.CouponRequestDto;
 import com.prueba.dto.CouponResponseDto;
 import com.prueba.service.ICouponService;
 
-public class CouponControllerTest {
+class CouponControllerTest {
 
 	@Mock
 	private ICouponService couponServiceImpl;
@@ -27,7 +27,7 @@ public class CouponControllerTest {
 	private CouponController couponController;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 
 		CouponResponseDto couponResponseDto = new CouponResponseDto();
@@ -40,7 +40,7 @@ public class CouponControllerTest {
 	}
 
 	@Test
-	public void evaluateCouponTest() throws Exception {
+	void evaluateCouponTest() throws Exception {
 
 		CouponRequestDto couponRequestDto = new CouponRequestDto();
 		couponRequestDto.setAmount(20000f);
@@ -55,7 +55,7 @@ public class CouponControllerTest {
 		Assert.assertNotNull(response);
 		CouponResponseDto couponResponseDto = response.getBody();
 		Assert.assertEquals(Float.valueOf(19800f), couponResponseDto.getTotal());
-		Assert.assertTrue(couponResponseDto.getItemIds().size() == 2);
+		Assert.assertEquals(couponResponseDto.getItemIds().size(), 2);
 	}
 
 }

@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.util.ReflectionTestUtils;
 
-public class RecommendationServiceImplTest {
+class RecommendationServiceImplTest {
 
 	@InjectMocks
 	private RecommendationServiceImpl recommendationServiceImpl;
@@ -23,7 +23,7 @@ public class RecommendationServiceImplTest {
 	}
 
 	@Test
-	public void calculateTest() {
+	void calculateTest() {
 
 		Float amountIn = 7000f;
 
@@ -35,7 +35,7 @@ public class RecommendationServiceImplTest {
 
 		List<String> resultList = recommendationServiceImpl.calculate(items, amountIn);
 		Assert.assertNotNull(resultList);
-		Assert.assertTrue(resultList.size() == 3);
+		Assert.assertEquals(resultList.size(), 3);
 	}
 
 }
