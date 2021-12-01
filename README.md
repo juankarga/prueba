@@ -20,7 +20,7 @@ Para implementar este ejercicio se usaron las siguientes herramientas o framewor
 
 **Contenedor:** Docker.
 
-Coupon.drawio.png![imagen](https://user-images.githubusercontent.com/95094164/144253255-a82c5edb-90ab-4b05-b33a-c7c4bdccf955.png)
+Diagrama![imagen](https://user-images.githubusercontent.com/95094164/144253255-a82c5edb-90ab-4b05-b33a-c7c4bdccf955.png)
 
 ## Para ejecutar el ejercicio de forma local es necesario seguir los siguientes paso:
 
