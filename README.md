@@ -6,7 +6,7 @@ Para implementar este ejercicio se usaron las siguientes herramientas o framewor
 
 **Codigo fuente:** Java usando el framework spring (spring boot, Spring data redis).
 
-**Pruebas unitarias:** JUnit 5.
+**Pruebas unitarias:** JUnit 5 y Mockito.
 
 **Administrador de dependencias:** Maven.
 
