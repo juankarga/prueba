@@ -24,7 +24,7 @@ Para implementar este ejercicio se usaron las siguientes herramientas o framewor
 
 2. tener instalado Redis localmente (https://redis.io/topics/quickstart).
 
-3. Descargar el repositorio usando el siguiente comando: git clone https://github.com/juankarga/prueba.git
+3. Descargar el repositorio usando el siguiente comando: `git clone https://github.com/juankarga/prueba.git`
 
 4. Ingresar al proyecto usando: `cd prueba`
 
